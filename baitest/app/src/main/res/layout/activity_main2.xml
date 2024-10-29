@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity2">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_marginVertical="10dp"
+
+        android:text="Danh sách sinh viên" />
+
+    <TableLayout
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:background="@drawable/bg1">
+
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="ID" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="Name" />
+            <TextView
+                android:id="@+id/d_toan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="Toán" />
+            <TextView
+                android:id="@+id/d_ly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="Lý" />
+            <TextView
+                android:id="@+id/d_hoa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="Hóa" />
+
+        </TableRow>
+
+
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_thêm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="add student" />
+
+        <Button
+            android:id="@+id/btn_student_grade_high"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="top student" />
+
+        <Button
+            android:id="@+id/btn_student_grade_low"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="lower student" />
+    </LinearLayout>
+</LinearLayout>

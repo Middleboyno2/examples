@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Check device for books -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
+    <!-- Send notification about new app version -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Removing DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION, which is not used -->
+    <uses-permission
+        android:name="ua.acclorite.book_story.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        tools:node="remove" />
+
+    <application
+        android:name=".Application"
+        android:allowBackup="false"
+        android:icon="@mipmap/app_icon"
+        android:roundIcon="@mipmap/app_icon_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Start.Splash"
+        android:requestLegacyExternalStorage="true"
+        android:enableOnBackInvokedCallback="true"
+        android:usesCleartextTraffic="false"
+        android:largeHeap="true"
+        tools:targetApi="tiramisu"
+        tools:ignore="DataExtractionRules">
+
+        <activity
+            android:name=".Activity"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|locale|density"
+            android:exported="true"
+            android:theme="@style/Theme.Start.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Save app locales -->
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
+    </application>
+
+</manifest>

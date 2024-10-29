@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/material_dynamic_neutral60"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-black"
+            android:textFontWeight="800"
+            android:text="Nhập điểm" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="10dp"
+        android:background="@drawable/bg1"
+
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="nhập id"
+            android:layout_marginTop="10dp"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nhập name"
+            android:layout_marginTop="10dp"
+            android:inputType="text"
+             />
+
+        <EditText
+            android:id="@+id/d_toan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nhập điểm toán"
+            android:layout_marginTop="10dp"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/d_ly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nhập điểm lý"
+            android:layout_marginTop="10dp"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/d_hoa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nhập điểm hóa"
+            android:layout_marginTop="10dp"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="140dp"
+            android:layout_marginVertical="20dp"
+            android:text="Save" />
+
+    </LinearLayout>
+</LinearLayout>

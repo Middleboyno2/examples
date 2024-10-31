@@ -18,8 +18,8 @@ import 'package:flutter/material.dart';
 
 class ClothesTile extends StatelessWidget{
   final Clothes clothes;
-  void Function()? onTap;
-  ClothesTile({super.key, required this.clothes, required this.onTap});
+  final void Function()? onTap;
+  const ClothesTile({super.key, required this.clothes, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

@@ -14,8 +14,10 @@ class Shop extends StatefulWidget{
 
 }
 class ShopState extends State<Shop>{
-
+  // phần này để lấy ký tự nhập vào ô search
   TextEditingController myController = TextEditingController();
+
+
   void addShoeToCart(Clothes clothe) {
     Provider.of<Cart>(context, listen: false).addItemToCart(clothe);
     showDialog(

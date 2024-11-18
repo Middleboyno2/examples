@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "757342741446",
+    "firebase_url": "https://cancu-50eb4-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "cancu-50eb4",
+    "storage_bucket": "cancu-50eb4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757342741446:android:59b8b5382b13861c0c48c7",
+        "android_client_info": {
+          "package_name": "com.example.caccuApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpW8tU90ht-gtylkd-HwiJJwWBh97UleU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757342741446:android:0871c30492474e6a0c48c7",
+        "android_client_info": {
+          "package_name": "com.example.caccu_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpW8tU90ht-gtylkd-HwiJJwWBh97UleU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

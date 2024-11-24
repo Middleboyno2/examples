@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'billViewModel.dart';
+import 'editBill.dart';
 
 class BillScreen extends StatefulWidget {
   const BillScreen({super.key});
@@ -48,7 +49,8 @@ class _BillScreenState extends State<BillScreen> {
         builder: (context, billViewModel, child) {
           return Scaffold(
             appBar: AppBar(
-              title: Center(
+              title: Padding(
+                padding: EdgeInsets.only(left: 70),
                 child: const Text(
                   "DANH SÁCH HÓA ĐƠN",
                   style: TextStyle(
@@ -61,20 +63,23 @@ class _BillScreenState extends State<BillScreen> {
                   icon: const Icon(Icons.refresh), // Biểu tượng nút reload
                   onPressed: () async {
                     // Gọi hàm reload từ ViewModel
-                    // await billViewModel
-                    //     .fetchTransactionsByMonth(reset: true);
-                    // ScaffoldMessenger.of(context).showSnackBar(
-                    //   const SnackBar(content: Text("Danh sách đã được làm mới!")),
-                    // );
+                    await billViewModel
+                        .fetchBillsByMonth(reset: true);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Danh sách đã được làm mới!")),
+                    );
                   },
                   tooltip: 'Reload Bill', // Tooltip hiển thị khi giữ nút
                 ),
                 IconButton(
                   icon: const Icon(Icons.edit), // Biểu tượng nút reload
                   onPressed: () async {
-                    // Gọi hàm reload từ ViewModel
-                    // await billViewModel
-                    //     .fetchTransactionsByMonth(reset: true);
+                    // chuyêển tiếp
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context){
+                        return AddBillScreen();
+                      }
+                    ));
                     // ScaffoldMessenger.of(context).showSnackBar(
                     //   const SnackBar(content: Text("Danh sách đã được làm mới!")),
                     // );
@@ -105,8 +110,10 @@ class _BillScreenState extends State<BillScreen> {
                       } else if (!billViewModel.hasMoreData) {
                         return Container(
                           margin: EdgeInsets.symmetric(vertical: 50),
-                          child: const Center(
-                            child: Text("không còn giao dịch."),
+                          child: const Expanded(
+                            child:Center(
+                              child: Text("không còn giao dịch."),
+                            )
                           ),
                         );
                       } else {
@@ -195,8 +202,8 @@ class _BillScreenState extends State<BillScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AddBillScreen(
-                // transaction: transaction, // Truyền transaction vào màn hình chỉnh sửa
+              builder: (context) => EditBillScreen(
+                billEntity: bill, // Truyền transaction vào màn hình chỉnh sửa
               ),
             ),
           );

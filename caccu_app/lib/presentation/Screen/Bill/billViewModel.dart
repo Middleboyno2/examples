@@ -149,4 +149,18 @@ class BillViewModel with ChangeNotifier{
   Future<bool> deleteBill(String billId) async{
     return await BillUseCase().deleteBill(billId);
   }
+  Future<bool> updateBill(
+      String billId, // ID of the bill to update
+      String categoryId,
+      String name,
+      double price,
+      DateTime deadline,
+      bool repeat,
+      ) async{
+    return await BillUseCase().
+    updateBill2(billId, userId!, categoryId, name, price, deadline, repeat);
+
+  }
+
+
 }

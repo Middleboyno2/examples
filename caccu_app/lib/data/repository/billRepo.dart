@@ -26,11 +26,11 @@ class BillRepository{
 
       // Tạo dữ liệu bill
       Map<String, dynamic> billData = {
-        'userId': userRef.path, // Tham chiếu đến người dùng
-        'categoryId': categoryRef.path, // Tham chiếu đến danh mục
+        'userId': userRef, // Tham chiếu đến người dùng
+        'categoryId': categoryRef, // Tham chiếu đến danh mục
         'name': name, // Tên hóa đơn
         'price': price, // Giá trị hóa đơn
-        'deadline': deadline.toIso8601String(), // Hạn chót (chuyển đổi sang chuỗi ISO)
+        'deadline': deadline, // Hạn chót (chuyển đổi sang chuỗi ISO)
         'repeat': repeat, // Có lặp lại hay không
       };
 
@@ -53,6 +53,42 @@ class BillRepository{
       return false;
     }
   }
+
+  Future<bool> updateBill2(
+      String billId, // ID of the bill to update
+      String userId,
+      String categoryId,
+      String name,
+      double price,
+      DateTime deadline,
+      bool repeat,
+      ) async {
+    try {
+      // Convert parameters into DocumentReference
+      DocumentReference userRef = _db.collection('users').doc(userId);
+      DocumentReference categoryRef = _db.collection('categories').doc(categoryId);
+
+      // Create a BillEntity with updated data
+      BillEntity updatedBill = BillEntity(
+        billId: billId,
+        userId: userRef,
+        categoryId: categoryRef,
+        name: name,
+        price: price,
+        deadline: deadline,
+        repeat: repeat,
+      );
+
+      // Update the bill in Firestore
+      await _db.collection('bills').doc(billId).update(updatedBill.toMap());
+      return true; // Return true if the update is successful
+    } catch (e) {
+      print("Error updating bill: $e");
+      return false; // Return false if an error occurs
+    }
+  }
+
+
 
   // Xóa giao dịch
   Future<bool> deleteBill(String billId) async {

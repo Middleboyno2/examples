@@ -21,4 +21,16 @@ class BillUseCase{
   Future<bool> deleteBill(String billId){
     return _billRepository.deleteBill(billId);
   }
+
+  Future<bool> updateBill2(
+      String billId, // ID of the bill to update
+      String userId,
+      String categoryId,
+      String name,
+      double price,
+      DateTime deadline,
+      bool repeat,
+      ){
+    return _billRepository.updateBill2(billId, userId, categoryId, name, price, deadline, repeat);
+  }
 }

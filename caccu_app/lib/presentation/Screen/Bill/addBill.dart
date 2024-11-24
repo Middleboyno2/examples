@@ -107,7 +107,8 @@ class _AddBillScreenState extends State<AddBillScreen> {
         } else {
           return Scaffold(
             appBar: AppBar(
-              title: const Center(
+              title: const Padding(
+                padding: EdgeInsets.only(left: 100),
                 child: Text(
                   "HÓA ĐƠN",
                   style: TextStyle(

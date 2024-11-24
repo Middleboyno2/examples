@@ -1,5 +1,6 @@
 import 'package:caccu_app/data/service/LocalStorage.dart';
 import 'package:caccu_app/data/usecase/userUsecase.dart';
+import 'package:caccu_app/presentation/Screen/Login.dart';
 
 import 'package:caccu_app/presentation/Screen/navigator.dart';
 import 'package:flutter/material.dart';
@@ -14,27 +15,27 @@ class UserViewModel with ChangeNotifier{
   // check
   bool status = false;
 
-  
+
   // Phương thức để kiểm tra các giá trị nhập vào
   Future<bool> validateInputEmail(String email) async {
-    emailError ="";
+    // emailError ="";
 
     if (email.isEmpty ) {
       // kiểm tra định dạng email
       emailError = "Email không được để trống!";
       return false;
     }else{
-      bool check = await UserUseCase().checkEmail(email);
-      if (check){
-        emailError = "Email đã tồn tại!";
-      }
+      // bool check = await UserUseCase().checkEmail(email);
+      // if (check){
+      //   emailError = "Email đã tồn tại!";
+      // }
     }
     return true;
   }
 
   // Phương thức để kiểm tra các giá trị nhập vào
   bool validateInputPassword(String password) {
-    passwordError = "";
+    // passwordError = "";
     if (password.isEmpty) {
       // kiểm tra định dạng password
       passwordError = "Mật khẩu không được để trống!";
@@ -43,7 +44,7 @@ class UserViewModel with ChangeNotifier{
     return true;
   }
   // hàm chuyển giao diện khi đủ điều kiện
-  Future<void> nextScreen(BuildContext context, String email, String password) async {
+  Future<void> nextScreen(BuildContext context0, String email, String password) async {
     bool checkEmail = await validateInputEmail(email);
     bool checkPass = validateInputPassword(password);
 
@@ -54,14 +55,15 @@ class UserViewModel with ChangeNotifier{
       if (credentialsValid) {
         await LocalStorageService().saveUserEmail(email);
         print(LocalStorageService().getUserEmail());
+        Navigator.pop(context0);
         Navigator.push(
-          context,
+          context0,
           MaterialPageRoute(builder: (context) => const NavScreen()),
         );
       } else {
         // Hiển thị dialog thông báo lỗi nếu thông tin không hợp lệ
         showDialog(
-          context: context,
+          context: context0,
           builder: (BuildContext context) {
             return AlertDialog(
               title: Text("Lỗi đăng nhập"),
@@ -104,7 +106,20 @@ class UserViewModel with ChangeNotifier{
 
 
 // --------------------------------------------- register ----------------------------------------
-//   // Phương thức để kiểm tra các giá trị nhập vào
+  void logOut(BuildContext context) async{
+    await LocalStorageService().clearUserEmail();
+    await LocalStorageService().clearUserId();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => LoginScreen()),
+    );
+
+  }
+
+
+
+//
+// Phương thức để kiểm tra các giá trị nhập vào
 //   bool validateInputEmail(String email) {
 //     emailError = "";
 //

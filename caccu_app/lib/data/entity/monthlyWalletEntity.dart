@@ -4,16 +4,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MonthlyWalletEntity {
   String? monthlyWalletId;
-  String walletId;
+  DocumentReference walletId;
   double availableBalance;
-  double currently;
-  DateTime month;
+  String currency;
+  int month;
 
   MonthlyWalletEntity({
     this.monthlyWalletId,
     required this.walletId,
     required this.availableBalance,
-    required this.currently,
+    required this.currency,
     required this.month,
   });
 
@@ -23,8 +23,8 @@ class MonthlyWalletEntity {
       monthlyWalletId: documentId,
       walletId: data['walletId'] ?? '',
       availableBalance: data['availableBalance']?.toDouble() ?? 0.0,
-      currently: data['currently']?.toDouble() ?? 0.0,
-      month: (data['month'] as Timestamp).toDate(),
+      currency: data['currency'],
+      month: data['month'],
     );
   }
 
@@ -33,7 +33,7 @@ class MonthlyWalletEntity {
     return {
       'walletId': walletId,
       'availableBalance': availableBalance,
-      'currently': currently,
+      'currency': currency,
       'month': month,
     };
   }

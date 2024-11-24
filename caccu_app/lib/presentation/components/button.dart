@@ -1,11 +1,11 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget{
-  final Color? color;
   final void Function()? onTap;
 
-  const MyButton({super.key, required this.color, required this.onTap});
+  const MyButton({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class MyButton extends StatelessWidget{
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: color,
+          color: Colors.red.shade400,
           borderRadius: BorderRadius.circular(8),
         ),
         padding: const EdgeInsets.all(25),

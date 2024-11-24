@@ -1,3 +1,4 @@
+import 'package:caccu_app/presentation/Screen/Register.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'UserViewModel.dart';
@@ -116,7 +117,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       Text('No account? '),
                       GestureDetector(
                         onTap: () {
-                          // Điều hướng đến trang đăng ký
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RegisterPage(
+                              ),
+                            ),
+                          );
                         },
                         child: Text(
                           'Sign up',

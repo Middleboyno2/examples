@@ -1,23 +1,53 @@
 // lib/services/transaction_service.dart
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../entity/transactionEntity.dart';
 import '../repository/transactionRepo.dart';
 
 class TransactionUseCase {
   final TransactionRepository _transactionRepository = TransactionRepository();
 
-  // Thêm giao dịch mới
-  Future<void> addTransaction(TransactionEntity transaction) async {
+  Future<void> addTransaction(TransactionEntity transaction)async {
     await _transactionRepository.addTransaction(transaction);
   }
 
+  // Thêm giao dịch mới
+  Future<bool> addTransaction2(String userId,
+      String categoryId,
+      String walletId,
+      double price,
+      String notes,
+      DateTime time) async {
+    return await _transactionRepository.addTransaction2(
+      userId,
+      categoryId,
+      walletId,
+      price,
+      notes,
+      time
+    );
+  }
+
   // Cập nhật giao dịch
-  Future<void> updateTransaction(String transactionId, Map<String, dynamic> updatedData) async {
-    await _transactionRepository.updateTransaction(transactionId, updatedData);
+  Future<bool> updateTransaction(String transactionId, Map<String, dynamic> updatedData) async {
+    return await _transactionRepository.updateTransaction(transactionId, updatedData);
+  }
+
+  Future<bool> updateTransaction2(
+      String transactionId, // ID của giao dịch cần cập nhật
+      String userId,
+      String categoryId,
+      String walletId,
+      double price,
+      String notes,
+      DateTime time,
+      ) async{
+    return await _transactionRepository.updateTransaction2(transactionId, userId, categoryId, walletId, price, notes, time);
   }
 
   // Xóa giao dịch
-  Future<void> deleteTransaction(String transactionId) async {
-    await _transactionRepository.deleteTransaction(transactionId);
+  Future<bool> deleteTransaction(String transactionId) async {
+    return await _transactionRepository.deleteTransaction(transactionId);
   }
 
   // Lấy danh sách giao dịch của người dùng
@@ -28,5 +58,13 @@ class TransactionUseCase {
   // Lấy danh sách giao dịch của người dùng
   Stream<List<TransactionEntity>> getTransactions() {
     return _transactionRepository.getTransactions();
+  }
+
+  Future<List<TransactionEntity>> getTransactionsByUserAndMonth(String userId, int month){
+    return _transactionRepository.getTransactionsByUserAndMonth(userId, month);
+  }
+
+  Future<List<double>> getTotalPriceByWalletIds(String userId, List<String> walletIds){
+    return _transactionRepository.getTotalPriceByWalletIds(userId, walletIds);
   }
 }

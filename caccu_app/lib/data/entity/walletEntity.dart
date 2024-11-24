@@ -1,8 +1,10 @@
 // lib/data/models/wallet_model.dart
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class WalletEntity {
   String? walletId;
-  String userId;
+  DocumentReference userId;
   String walletName;
 
   WalletEntity({

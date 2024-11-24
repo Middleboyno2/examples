@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
+  TextEditingController textEmail = TextEditingController();
+  TextEditingController textPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +43,7 @@ class RegisterPage extends StatelessWidget {
             SizedBox(height: 20),
             // Phone field
             TextField(
+
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 labelText: 'Phone',

@@ -1,4 +1,5 @@
 import 'package:caccu_app/data/entity/userEntity.dart';
+import 'package:caccu_app/data/service/LocalStorage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserRepository{
@@ -35,10 +36,14 @@ class UserRepository{
       }
 
       // Lấy user đầu tiên từ kết quả
-      var userData = snapshot.docs.first.data() as Map<String, dynamic>;
+      var userDoc = snapshot.docs.first;
+      var userData = userDoc.data() as Map<String, dynamic>;
 
       // Kiểm tra mật khẩu có đúng không
       if (userData['password'] == password) {
+        String userId = userDoc.id; // Lấy userId từ tài liệu
+        LocalStorageService().saveUserId(userId);
+        print(LocalStorageService().getUserId());// Lưu userId vào LocalStorage
         return true; // Thông tin hợp lệ
       } else {
         return false; // Mật khẩu không đúng

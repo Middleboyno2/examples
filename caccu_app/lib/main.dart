@@ -1,7 +1,11 @@
+import 'package:caccu_app/presentation/Screen/Home/HomeViewModel.dart';
 import 'package:caccu_app/presentation/Screen/Login.dart';
 import 'package:caccu_app/presentation/Screen/UserViewModel.dart';
+import 'package:caccu_app/presentation/Screen/addTransacion/addTransactionViewModel.dart';
+import 'package:caccu_app/presentation/Screen/monthlyWalletViewModel.dart';
 import 'package:caccu_app/presentation/Screen/navigator.dart';
 import 'package:caccu_app/presentation/Screen/transaction/TransactionViewModel.dart';
+import 'package:caccu_app/presentation/Screen/walletViewModel.dart';
 import 'package:caccu_app/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +24,10 @@ void main() async{
       providers: [
         ChangeNotifierProvider(create: (_) => TransactionViewModel()),
         ChangeNotifierProvider(create: (_) => UserViewModel()),
+        ChangeNotifierProvider(create: (_) => HomeViewModel()),
+        ChangeNotifierProvider(create: (_) => MonthlyWalletViewModel()),
+        ChangeNotifierProvider(create: (_) => WalletViewModel()),
+        ChangeNotifierProvider(create: (_) => AddTransactionViewModel()),
       ],
       child: const MyApp(),
     ),

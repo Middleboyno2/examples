@@ -1,10 +1,12 @@
+import 'package:caccu_app/presentation/Screen/Bill/bill.dart';
+import 'package:caccu_app/presentation/Screen/Other/other.dart';
 import 'package:caccu_app/presentation/Screen/transaction/transaction.dart';
 import 'package:caccu_app/presentation/components/spendingChart.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'Home/Home.dart';
-import 'addTransaction.dart';
+import 'addTransacion/addTransaction.dart';
 
 class NavScreen extends StatefulWidget {
   const NavScreen({super.key});
@@ -22,18 +24,21 @@ class _NavScreenState extends State<NavScreen> {
   final List<Widget> _screens = [
     const Home(),
     const TransactionScreen(),
-    addTransactionScreen(),
+    const AddTransactionScreen(),
+    const BillScreen(),
+    const OtherScreen()
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      body: _screens[_page],
+      body: SafeArea(
+        child: _screens[_page],
+      ),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.white,
-        buttonBackgroundColor: Colors.white,
-        color: Colors.red,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        color: Colors.red.shade400,
         animationDuration: const Duration(milliseconds: 400),
         items: const <Widget>[
           Icon(Icons.home),

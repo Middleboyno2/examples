@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class TransactionEntity {
   String? transactionId;            // ID của giao dịch
   DocumentReference walletId;           // Loại giao dịch (chi tiêu, thu nhập)
-  double amount;         // Số tiền giao dịch
+  double price;         // Số tiền giao dịch
   DocumentReference categoryId;       // Danh mục của giao dịch (ăn uống, giải trí, ...)
   DateTime? time;         // Ngày thực hiện giao dịch
   String? notes;         // Ghi chú thêm cho giao dịch
@@ -15,7 +15,7 @@ class TransactionEntity {
   TransactionEntity({
     this.transactionId,
     required this.walletId,
-    required this.amount,
+    required this.price,
     required this.categoryId,
     this.time,
     this.notes,
@@ -28,7 +28,7 @@ class TransactionEntity {
     return TransactionEntity(
       transactionId: documentId,
       walletId: data['walletId'],
-      amount: data['price']?.toDouble() ?? 0.0,
+      price: data['price']?.toDouble() ?? 0.0,
       categoryId: data['categoryId'],
       time: (data['time'] as Timestamp).toDate(),
       notes: data['note'],
@@ -41,7 +41,7 @@ class TransactionEntity {
   Map<String, dynamic> toMap() {
     return {
       'walletId': walletId,
-      'price': amount,
+      'price': price,
       'categoryId': categoryId,
       'time': time,
       'note': notes,

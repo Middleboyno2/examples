@@ -1,8 +1,10 @@
 // lib/data/models/category_model.dart
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class CategoryEntity {
   String? categoryId;
-  String userId;
+  DocumentReference userId;
   String name;
   String icon;
   double limit;

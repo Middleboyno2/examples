@@ -16,8 +16,8 @@ class MyButton extends StatelessWidget{
           color: Colors.red.shade400,
           borderRadius: BorderRadius.circular(8),
         ),
-        padding: const EdgeInsets.all(25),
-        child: const Center(child: Text("Tap"),),
+        padding: const EdgeInsets.all(20),
+        child: const Center(child: Text("LOG OUT"),),
       ),
     );
   }

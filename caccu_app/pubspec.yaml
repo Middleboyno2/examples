@@ -47,8 +47,10 @@ dependencies:
   fluttertoast: ^8.2.1
   mailer: ^6.2.0
   intl: ^0.18.0
+  firebase_messaging: ^15.1.5 
   provider:
   firebase_auth: ^5.3.3
+  flutter_local_notifications:
 
 dev_dependencies:
   flutter_test:

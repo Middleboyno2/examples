@@ -1,3 +1,4 @@
+import 'package:caccu_app/data/API/firebaseApi.dart';
 import 'package:caccu_app/presentation/Screen/Bill/billViewModel.dart';
 import 'package:caccu_app/presentation/Screen/Home/HomeViewModel.dart';
 import 'package:caccu_app/presentation/Screen/Account/Login.dart';
@@ -14,10 +15,15 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
+
+
+
+
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
+  // await FirebaseApi().initNotification();
   await Hive.initFlutter();
   await Hive.openBox('userBox');
   runApp(
@@ -45,11 +51,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool? isLoggedIn;
+  // NotificationService notificationService
 
   @override
   void initState() {
     super.initState();
     _checkLoginStatus();
+    FirebaseApi.firebaseInit();
   }
 
   Future<void> _checkLoginStatus() async {

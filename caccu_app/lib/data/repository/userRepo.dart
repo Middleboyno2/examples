@@ -155,8 +155,11 @@ class UserRepository{
       // Kiểm tra mật khẩu có đúng không
       if (userData['password'] == password) {
         String userId = userDoc.id; // Lấy userId từ tài liệu
+        String userName = userData['name'];
         LocalStorageService().saveUserId(userId);
-        print(LocalStorageService().getUserId());// Lưu userId vào LocalStorage
+        LocalStorageService().saveUserName(userName);
+        print('userId: ${LocalStorageService().getUserId()}');
+        print('userName: ${LocalStorageService().getUserName()}');// Lưu userId vào LocalStorage
         return true; // Thông tin hợp lệ
       } else {
         return false; // Mật khẩu không đúng

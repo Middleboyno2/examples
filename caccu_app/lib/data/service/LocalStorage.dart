@@ -26,4 +26,16 @@ class LocalStorageService {
   Future<void> clearUserId() async {
     await _userBox.delete('userId');
   }
+
+  Future<void> saveUserName(String userName) async {
+    await _userBox.put('userName', userName);
+  }
+
+  String? getUserName() {
+    return _userBox.get('userName') ?? '';
+  }
+
+  Future<void> clearUserName() async {
+    await _userBox.delete('userName');
+  }
 }

@@ -121,14 +121,13 @@ class UserViewModel with ChangeNotifier{
   void logOut(BuildContext context) async{
     await LocalStorageService().clearUserEmail();
     await LocalStorageService().clearUserId();
+    await LocalStorageService().clearUserName();
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => LoginScreen()),
     );
 
   }
-
-
 
 
 // Phương thức để kiểm tra các giá trị nhập vào

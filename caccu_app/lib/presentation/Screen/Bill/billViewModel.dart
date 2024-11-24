@@ -1,12 +1,19 @@
 import 'package:caccu_app/data/service/LocalStorage.dart';
 import 'package:caccu_app/data/usecase/billUsecase.dart';
+import 'package:caccu_app/data/usecase/noticationUseCase.dart';
 import 'package:caccu_app/presentation/Screen/Category/categoryViewModel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../data/entity/billEntity.dart';
 import '../../../data/entity/categoryEntity.dart';
-import '../Wallet/walletViewModel.dart';
+import '../../../main.dart';
+
+import 'package:timezone/timezone.dart' as tz;
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
 
 class BillDetail {
   final BillEntity bill;
@@ -125,6 +132,7 @@ class BillViewModel with ChangeNotifier{
       DateTime deadline,
       bool repeat) async{
     bool a = await BillUseCase().addBill2(userId!, categoryId, name, price, deadline, repeat);
+    await NotificationUseCase().addNotification(userId!, 'hóa đơn đến hạn!', name, deadline, false);
     if(a){
       Fluttertoast.showToast(
         msg: "Thêm hóa đơn thành công",
@@ -161,6 +169,11 @@ class BillViewModel with ChangeNotifier{
     updateBill2(billId, userId!, categoryId, name, price, deadline, repeat);
 
   }
+
+  //==============================================================================
+
+
+
 
 
 }

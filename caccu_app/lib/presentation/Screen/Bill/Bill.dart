@@ -16,10 +16,10 @@ class BillScreen extends StatefulWidget {
 class _BillScreenState extends State<BillScreen> {
   // late Future<void> _initializeFuture;
   // @override
-  // void initState() {
+  // Future<void> initState() async {
   //   super.initState();
   //   // Gọi initialize() khi khởi tạo màn hình
-  //   _initializeFuture = Provider.of<TransactionViewModel>(context, listen: false).getTransactionsByUserIdAndMonth(month);
+  //   Provider.of<BillViewModel>(context, listen: false).testNotification();
   // }
 
   void delete(BuildContext context, BillViewModel billViewModel, String billId) async{

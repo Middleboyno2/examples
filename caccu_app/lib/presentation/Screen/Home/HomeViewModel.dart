@@ -3,6 +3,7 @@ import 'dart:ffi';
 
 import 'package:caccu_app/data/entity/monthlyWalletEntity.dart';
 import 'package:caccu_app/data/service/LocalStorage.dart';
+import 'package:caccu_app/data/usecase/noticationUseCase.dart';
 import 'package:caccu_app/presentation/Screen/Category/categoryViewModel.dart';
 import 'package:caccu_app/presentation/Screen/monthlyWallet/monthlyWalletViewModel.dart';
 import 'package:caccu_app/presentation/Screen/transaction/TransactionViewModel.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../../data/entity/notificationEntity.dart';
 import '../../../data/entity/transactionEntity.dart';
 import '../../../data/entity/walletEntity.dart';
 import '../../../data/usecase/walletUsecase.dart';
@@ -142,6 +144,9 @@ class HomeViewModel with ChangeNotifier{
 
         notifyListeners(); // Gọi để cập nhật UI sau khi có dữ liệu
       }
+
+      await updateNotificationsForUser();
+      notifyListeners();
     }
   }
 
@@ -333,6 +338,18 @@ class HomeViewModel with ChangeNotifier{
       return false;
     }
   }
+  //=============================notification======================================
 
+  Future<List<NotificationEntity>> getNotificationByUserId(){
+    return NotificationUseCase().getNotificationByUserId(userId!, true);
+  }
+  Future<void> setStatusNotification(String notificationId, bool newStatus){
+    return NotificationUseCase().setStatusNotification(notificationId, newStatus);
+  }
+
+  Future<void> updateNotificationsForUser() async {
+
+    await NotificationUseCase().updateNotificationsForUser(userId!);
+  }
 
 }

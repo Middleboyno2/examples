@@ -10,8 +10,8 @@ class OtherScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Center(
+    return Scaffold(
+      body: Center(
         child: MyBox(
           child: MyButton(
             onTap: () {

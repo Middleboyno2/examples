@@ -3,7 +3,7 @@ import 'package:caccu_app/data/entity/monthlyWalletEntity.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../monthlyWalletViewModel.dart';
+import 'monthlyWalletViewModel.dart';
 
 class EditMonthlyWalletScreen extends StatefulWidget {
   final MonthlyWalletEntity monthlyWallet;

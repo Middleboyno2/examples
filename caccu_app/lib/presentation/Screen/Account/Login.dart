@@ -1,4 +1,5 @@
-import 'package:caccu_app/presentation/Screen/Register.dart';
+import 'package:caccu_app/presentation/Screen/Account/ForgetPass.dart';
+import 'package:caccu_app/presentation/Screen/Account/Register.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'UserViewModel.dart';
@@ -136,6 +137,30 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   SizedBox(height: 30),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context, MaterialPageRoute(builder: (context){
+                              return ForgetPassword();
+                            })
+                            );
+                          },
+                          child: Text(
+                            'Forget Password?',
+                            style: TextStyle(
+                              color: Colors.orange,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               );
             },

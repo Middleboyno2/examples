@@ -9,6 +9,7 @@ class BillEntity {
   String name;
   double price;
   DateTime deadline;
+  bool repeat;
 
   BillEntity({
     this.billId,
@@ -17,6 +18,7 @@ class BillEntity {
     required this.name,
     required this.price,
     required this.deadline,
+    required this.repeat
   });
 
   // Chuyển đổi từ Map (Firestore) sang Bill
@@ -28,6 +30,7 @@ class BillEntity {
       name: data['name'] ?? '',
       price: data['price']?.toDouble() ?? 0.0,
       deadline: (data['deadline'] as Timestamp).toDate(),
+      repeat: data['repeat'] ?? ''
     );
   }
 
@@ -39,6 +42,7 @@ class BillEntity {
       'name': name,
       'price': price,
       'deadline': deadline,
+      'repeat': repeat
     };
   }
 }

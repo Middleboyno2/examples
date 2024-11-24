@@ -45,8 +45,10 @@ dependencies:
   curved_navigation_bar: ^1.0.6
   fl_chart: ^0.69.0
   fluttertoast: ^8.2.1
+  mailer: ^6.2.0
   intl: ^0.18.0
   provider:
+  firebase_auth: ^5.3.3
 
 dev_dependencies:
   flutter_test:

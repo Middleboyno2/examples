@@ -1,6 +1,6 @@
 
-import 'package:caccu_app/presentation/Screen/Wallet.dart';
-import 'package:caccu_app/presentation/Screen/categoryViewModel.dart';
+import 'package:caccu_app/presentation/Screen/Wallet/Wallet.dart';
+import 'package:caccu_app/presentation/Screen/Category/categoryViewModel.dart';
 import 'package:caccu_app/presentation/components/lineChart.dart';
 import 'package:caccu_app/presentation/components/spendingChart.dart';
 import 'package:flutter/material.dart';

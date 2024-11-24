@@ -23,11 +23,46 @@ class _TransactionFormScreenState extends State<AddTransactionScreen> {
   TextEditingController noteController = TextEditingController();
   DateTime? selectedDate; // Selected date
 
+  DateTime? selectedDateTime;
+
   @override
   void initState() {
     super.initState();
     // Gọi initialize() khi khởi tạo màn hình
     _initializeFuture = Provider.of<AddTransactionViewModel>(context, listen: false).reload();
+  }
+
+
+
+  Future<void> _pickDateTime() async {
+    // Chọn ngày
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(DateTime.now().year, DateTime.now().month, 1),
+      lastDate: DateTime(DateTime.now().year, DateTime.now().month + 2, 0),
+    );
+
+    if (pickedDate == null) return;
+
+    // Chọn giờ/phút
+    TimeOfDay? pickedTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+
+    if (pickedTime == null) return;
+
+    // Kết hợp ngày và giờ
+    setState(() {
+      selectedDate = DateTime(
+        pickedDate.year,
+        pickedDate.month,
+        pickedDate.day,
+        pickedTime.hour,
+        pickedTime.minute,
+      );
+    });
   }
 
   void _add(BuildContext context, AddTransactionViewModel addTransactionViewModel) async{
@@ -105,12 +140,6 @@ class _TransactionFormScreenState extends State<AddTransactionScreen> {
                             inputFormatters: [
                               FilteringTextInputFormatter.digitsOnly, // Chỉ cho phép nhập số
                             ],
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter a valid Name Wallet';
-                              }
-                              return null;
-                            },
                           ),
                           const SizedBox(height: 16),
                           // Dropdown for selecting image
@@ -171,25 +200,14 @@ class _TransactionFormScreenState extends State<AddTransactionScreen> {
                               Expanded(
                                 child: Text(
                                   selectedDate == null
-                                      ? "No date selected"
-                                      : "${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}",
+                                      ? "No date/time selected"
+                                      : "${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year} "
+                                      "${selectedDate!.hour}:${selectedDate!.minute}:${selectedDate!.second}",
                                 ),
                               ),
                               ElevatedButton(
-                                onPressed: () async {
-                                  DateTime? pickedDate = await showDatePicker(
-                                    context: context,
-                                    initialDate: DateTime.now(),
-                                    firstDate: DateTime(DateTime.now().year,DateTime.now().month, 1),
-                                    lastDate: DateTime(DateTime.now().year,DateTime.now().month + 2, 0),
-                                  );
-                                  if (pickedDate != null) {
-                                    setState(() {
-                                      selectedDate = pickedDate;
-                                    });
-                                  }
-                                },
-                                child: const Text("Pick Date"),
+                                onPressed: _pickDateTime,
+                                child: const Text("Pick Date & Time"),
                               ),
                             ],
                           ),

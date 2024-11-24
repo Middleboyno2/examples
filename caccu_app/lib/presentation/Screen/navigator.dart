@@ -1,10 +1,11 @@
-import 'package:caccu_app/presentation/Screen/Bill/bill.dart';
+import 'package:caccu_app/presentation/Screen/Bill/addBill.dart';
 import 'package:caccu_app/presentation/Screen/Other/other.dart';
 import 'package:caccu_app/presentation/Screen/transaction/transaction.dart';
 import 'package:caccu_app/presentation/components/spendingChart.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
+import 'Bill/Bill.dart';
 import 'Home/Home.dart';
 import 'addTransacion/addTransaction.dart';
 

@@ -1,8 +1,8 @@
 import 'package:caccu_app/data/usecase/categoryUsecase.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../data/entity/categoryEntity.dart';
-import '../../data/service/LocalStorage.dart';
+import '../../../data/entity/categoryEntity.dart';
+import '../../../data/service/LocalStorage.dart';
 
 class CategoryViewModel with ChangeNotifier{
   String? userId = LocalStorageService().getUserId();

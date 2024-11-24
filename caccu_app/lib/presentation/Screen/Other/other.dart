@@ -1,5 +1,5 @@
-import 'package:caccu_app/presentation/Screen/Login.dart';
-import 'package:caccu_app/presentation/Screen/UserViewModel.dart';
+import 'package:caccu_app/presentation/Screen/Account/Login.dart';
+import 'package:caccu_app/presentation/Screen/Account/UserViewModel.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/box.dart';

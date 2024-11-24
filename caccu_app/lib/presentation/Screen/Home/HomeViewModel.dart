@@ -3,10 +3,10 @@ import 'dart:ffi';
 
 import 'package:caccu_app/data/entity/monthlyWalletEntity.dart';
 import 'package:caccu_app/data/service/LocalStorage.dart';
-import 'package:caccu_app/presentation/Screen/categoryViewModel.dart';
-import 'package:caccu_app/presentation/Screen/monthlyWalletViewModel.dart';
+import 'package:caccu_app/presentation/Screen/Category/categoryViewModel.dart';
+import 'package:caccu_app/presentation/Screen/monthlyWallet/monthlyWalletViewModel.dart';
 import 'package:caccu_app/presentation/Screen/transaction/TransactionViewModel.dart';
-import 'package:caccu_app/presentation/Screen/walletViewModel.dart';
+import 'package:caccu_app/presentation/Screen/Wallet/walletViewModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -123,6 +123,7 @@ class HomeViewModel with ChangeNotifier{
   // ham nay duoc su dung khi tab Home duoc tro toi
   // lay thong tin vi default va luu no lai thoi
   Future<void> initialize() async {
+    userId = LocalStorageService().getUserId();
     if (userId != null) {
       walletIdDefault = await walletViewModel.getDefaultWalletByIdUser(userId!);
       print('aaaaaaaaaaa: $walletIdDefault');
@@ -131,7 +132,7 @@ class HomeViewModel with ChangeNotifier{
       // await categoryViewModel.fetchUserCategories();
       if (walletIdDefault != null) {
         // Kiểm tra và tạo monthly wallet nếu cần thiết
-        monthlyWalletViewModel.checkMonthlyWallet(walletIdDefault!, currentMonth);
+        await monthlyWalletViewModel.checkMonthlyWallet(walletIdDefault!, currentMonth);
 
         // Lấy dữ liệu đầu tiên từ Stream và lưu trữ vào biến
         currentMonthlyWallet = await monthlyWalletViewModel
@@ -166,7 +167,11 @@ class HomeViewModel with ChangeNotifier{
 
   // lay thong tin vi default
   MonthlyWalletEntity? getMonthlyWalletDefault() {
+    if (currentMonthlyWallet == null) {
+      throw Exception('currentMonthlyWallet chưa được khởi tạo');
+    }
     return currentMonthlyWallet!;
+
   }
 
   //---------------------------------------------------------------------------------

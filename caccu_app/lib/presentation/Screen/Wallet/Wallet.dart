@@ -1,8 +1,8 @@
 import 'package:caccu_app/presentation/Screen/Home/HomeViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'Wallet/addWallet.dart';
-import 'Wallet/editWallet.dart';
+import 'addWallet.dart';
+import '../monthlyWallet/editWallet.dart';
 
 
 

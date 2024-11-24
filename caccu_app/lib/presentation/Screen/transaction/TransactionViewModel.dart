@@ -8,8 +8,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../data/usecase/transactionUsecase.dart';
-import '../categoryViewModel.dart';
-import '../walletViewModel.dart';
+import '../Category/categoryViewModel.dart';
+import '../Wallet/walletViewModel.dart';
 
 class TransactionDetail {
   final TransactionEntity transaction;

@@ -49,7 +49,7 @@ class WalletRepository{
     }
   }
 
-
+  //===============================================================================
 
   // lay walletId default
   Future<DocumentReference?> getDefaultWalletByIdByUser(String userId) async {
@@ -72,6 +72,51 @@ class WalletRepository{
       return null;
     }
   }
+
+  Future<bool> createDefaultWallet(String userId) async {
+    try {
+      // Chuyển userId thành DocumentReference
+      DocumentReference userRef = _db.collection('users').doc(userId);
+
+      // Tạo đối tượng WalletEntity
+      WalletEntity defaultWallet = WalletEntity(
+        walletName: 'default', // Tên ví mặc định
+        userId: userRef, // Tham chiếu đến DocumentReference của userId
+      );
+
+      // Thêm ví mặc định vào Firestore
+      await _db.collection('wallet').doc(defaultWallet.walletId).set(defaultWallet.toMap());
+
+      print("Default wallet created successfully for userId: $userId");
+      return true; // Trả về true nếu thành công
+    } catch (e) {
+      print("Error creating default wallet: $e");
+      return false; // Trả về false nếu có lỗi
+    }
+  }
+
+
+  Future<bool> checkDefaultWalletExists(String userId) async {
+    try {
+      // Chuyển userId thành DocumentReference
+      DocumentReference userRef = _db.collection('users').doc(userId);
+
+      // Truy vấn để kiểm tra ví có userId và walletName là 'default'
+      QuerySnapshot querySnapshot = await _db
+          .collection('wallet')
+          .where('userId', isEqualTo: userRef) // Điều kiện userId
+          .where('walletName', isEqualTo: 'default') // Điều kiện walletName = 'default'
+          .get();
+
+      // Nếu có ít nhất một document thì ví tồn tại
+      return querySnapshot.docs.isNotEmpty;
+    } catch (e) {
+      print("Error checking default wallet existence: $e");
+      return false; // Trả về false nếu có lỗi
+    }
+  }
+  //================================================================================
+
   // lay danh sach wallet cua userId
   Future<List<WalletEntity>> getListWalletByUserId(String userId) async {
     DocumentReference<Map<String, dynamic>> userRef = _db.collection('users').doc(userId);

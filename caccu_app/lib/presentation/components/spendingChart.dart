@@ -95,7 +95,7 @@ class SpendingChart extends StatelessWidget {
                     belowBarData: BarAreaData(show: true, color: Colors.orangeAccent),
                   ),
                 ],
-                minX: 0,
+                minX: 1,
                 maxX: daysInMonth(DateTime.now()),
                 minY: 0,
                 maxY: spots.isNotEmpty

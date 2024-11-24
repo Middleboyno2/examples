@@ -30,4 +30,12 @@ class WalletUseCase {
     return _walletRepository.getDefaultWalletByIdByUser(userId);
   }
 
+  Future<bool> createDefaultWallet(String userId){
+    return _walletRepository.createDefaultWallet(userId);
+  }
+
+  Future<bool> checkDefaultWalletExists(String userId){
+    return _walletRepository.checkDefaultWalletExists(userId);
+  }
+
 }

@@ -1,7 +1,7 @@
+import 'package:caccu_app/presentation/Screen/Account/UserViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:caccu_app/presentation/Screen/userViewModel.dart';
 import 'package:caccu_app/data/service/LocalStorage.dart';
 import 'package:caccu_app/data/usecase/userUsecase.dart';
 import 'package:caccu_app/presentation/Screen/navigator.dart';

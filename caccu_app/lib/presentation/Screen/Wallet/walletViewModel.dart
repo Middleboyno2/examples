@@ -1,15 +1,33 @@
 import 'package:caccu_app/data/entity/monthlyWalletEntity.dart';
 import 'package:caccu_app/data/entity/walletEntity.dart';
+import 'package:caccu_app/data/service/LocalStorage.dart';
 import 'package:caccu_app/data/usecase/walletUsecase.dart';
-import 'package:caccu_app/presentation/Screen/monthlyWalletViewModel.dart';
+import 'package:caccu_app/presentation/Screen/monthlyWallet/monthlyWalletViewModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class WalletViewModel with ChangeNotifier{
+  // String? userIdString = LocalStorageService().getUserId();
+
+  Future<bool> createDefaultWallet(String userId) async{
+    return await WalletUseCase().createDefaultWallet(userId);
+  }
+  Future<bool> checkDefaultWalletExists(String userId) async{
+    return await WalletUseCase().checkDefaultWalletExists(userId);
+  }
 
   Future<DocumentReference?> getDefaultWalletByIdUser( String userId) async{
-    return await WalletUseCase().getDefaultWalletByIdUser(userId);
+    // Kiểm tra nếu ví mặc định không tồn tại
+    if (!(await checkDefaultWalletExists(userId))) {
+      // Tạo ví mặc định nếu không tồn tại
+      bool created = await createDefaultWallet(userId);
+      if (!created) {
+        throw Exception("Failed to create default wallet");
+      }
+    }
+    // Lấy ví mặc định
+    return WalletUseCase().getDefaultWalletByIdUser(userId);
   }
 
   Future<List<WalletEntity>> fetchWalletsByUserId(String userId) async {

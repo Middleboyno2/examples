@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/entity/walletEntity.dart';
-import '../monthlyWalletViewModel.dart';
+import '../monthlyWallet/monthlyWalletViewModel.dart';
 
 class AddWalletScreen extends StatefulWidget {
 

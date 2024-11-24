@@ -1,6 +1,6 @@
 import 'package:caccu_app/data/entity/monthlyWalletEntity.dart';
 import 'package:caccu_app/data/entity/walletEntity.dart';
-import 'package:caccu_app/presentation/Screen/monthlyWalletViewModel.dart';
+import 'package:caccu_app/presentation/Screen/monthlyWallet/monthlyWalletViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

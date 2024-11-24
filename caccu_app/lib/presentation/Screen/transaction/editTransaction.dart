@@ -69,6 +69,37 @@ class _EditTransactionScreenState extends State<EditTransactionScreen> {
     Navigator.pop(context);
   }
 
+  Future<void> _pickDateTime() async {
+  // Chọn ngày
+  DateTime? pickedDate = await showDatePicker(
+  context: context,
+  initialDate: DateTime.now(),
+  firstDate: DateTime(DateTime.now().year, DateTime.now().month, 1),
+  lastDate: DateTime(DateTime.now().year, DateTime.now().month + 2, 0),
+  );
+
+  if (pickedDate == null) return;
+
+  // Chọn giờ/phút
+  TimeOfDay? pickedTime = await showTimePicker(
+  context: context,
+  initialTime: TimeOfDay.now(),
+  );
+
+  if (pickedTime == null) return;
+
+  // Kết hợp ngày và giờ
+  setState(() {
+  selectedDate = DateTime(
+  pickedDate.year,
+  pickedDate.month,
+  pickedDate.day,
+  pickedTime.hour,
+  pickedTime.minute,
+  );
+  });
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -155,25 +186,14 @@ class _EditTransactionScreenState extends State<EditTransactionScreen> {
                         Expanded(
                           child: Text(
                             selectedDate == null
-                                ? "No date selected"
-                                : "${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}",
+                                ? "No date/time selected"
+                                : "${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year} "
+                                "${selectedDate!.hour}:${selectedDate!.minute}:${selectedDate!.second}",
                           ),
                         ),
                         ElevatedButton(
-                          onPressed: () async {
-                            DateTime? pickedDate = await showDatePicker(
-                              context: context,
-                              initialDate: selectedDate ?? DateTime.now(),
-                              firstDate: DateTime(DateTime.now().year - 1),
-                              lastDate: DateTime(DateTime.now().year + 1),
-                            );
-                            if (pickedDate != null) {
-                              setState(() {
-                                selectedDate = pickedDate;
-                              });
-                            }
-                          },
-                          child: const Text("Pick Date"),
+                          onPressed: _pickDateTime,
+                          child: const Text("Pick Date & Time"),
                         ),
                       ],
                     ),

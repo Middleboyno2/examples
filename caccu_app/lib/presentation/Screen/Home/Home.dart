@@ -108,36 +108,38 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            body: Consumer<HomeViewModel>(
-              builder: (context, homeViewModel, child) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 10),
-                    WalletComponent(
-                      monthlyWallet: homeViewModel.getMonthlyWalletDefault(),
-                      onViewAllPressed: () {
-                        showWalletBottomSheet(context, homeViewModel.getAllMonthlyWallet(), homeViewModel);
-                      },
-                    ),
-                    FutureBuilder(
-                      future: _initTran,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
-                        } else if (snapshot.hasError) {
-                        return Center(child: Text('Error: ${snapshot.error}'));
-                        } else {
-                          return SizedBox(
-                            height: 600,
-                            child: SpendingChart(transactions: homeViewModel.transactions)
-                          );
+            body:SingleChildScrollView(
+              child: Consumer<HomeViewModel>(
+                builder: (context, homeViewModel, child) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 10),
+                      WalletComponent(
+                        monthlyWallet: homeViewModel.getMonthlyWalletDefault(),
+                        onViewAllPressed: () {
+                          showWalletBottomSheet(context, homeViewModel.getAllMonthlyWallet(), homeViewModel);
+                        },
+                      ),
+                      FutureBuilder(
+                        future: _initTran,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                          return const Center(child: CircularProgressIndicator());
+                          } else if (snapshot.hasError) {
+                          return Center(child: Text('Error: ${snapshot.error}'));
+                          } else {
+                            return SizedBox(
+                              height: 600,
+                              child: SpendingChart(transactions: homeViewModel.transactions)
+                            );
+                          }
                         }
-                      }
-                    ),
-                  ],
-                );
-              },
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
           );
         }

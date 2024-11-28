@@ -1,3 +1,4 @@
+import 'package:caccu_app/data/service/LocalNotification.dart';
 import 'package:caccu_app/data/service/LocalStorage.dart';
 import 'package:caccu_app/data/usecase/billUsecase.dart';
 import 'package:caccu_app/data/usecase/noticationUseCase.dart';
@@ -130,10 +131,19 @@ class BillViewModel with ChangeNotifier{
       String name,
       double price,
       DateTime deadline,
-      bool repeat) async{
-    bool a = await BillUseCase().addBill2(userId!, categoryId, name, price, deadline, repeat);
-    await NotificationUseCase().addNotification(userId!, 'hóa đơn đến hạn!', name, deadline, false);
-    if(a){
+      bool repeat,
+      ) async {
+    // Add the bill to Firestore
+    bool billAdded = await BillUseCase().addBill2(userId!, categoryId, name, price, deadline, repeat);
+
+    // Create a notification for the bill
+    await NotificationUseCase().addNotification(userId!, 'Hóa đơn đến hạn!', name, deadline, false);
+
+    if (billAdded) {
+      // Schedule a local notification
+      await LocalNotifi().scheduleBillNotification(name, deadline);
+
+      // Show success toast
       Fluttertoast.showToast(
         msg: "Thêm hóa đơn thành công",
         toastLength: Toast.LENGTH_SHORT,
@@ -142,6 +152,7 @@ class BillViewModel with ChangeNotifier{
         textColor: Colors.white,
       );
     } else {
+      // Show failure toast
       Fluttertoast.showToast(
         msg: "Thêm hóa đơn thất bại",
         toastLength: Toast.LENGTH_SHORT,
@@ -149,7 +160,6 @@ class BillViewModel with ChangeNotifier{
         backgroundColor: Colors.red,
         textColor: Colors.white,
       );
-
     }
   }
 

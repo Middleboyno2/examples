@@ -1,4 +1,4 @@
-import 'package:caccu_app/data/API/firebaseApi.dart';
+
 import 'package:caccu_app/presentation/Screen/Bill/billViewModel.dart';
 import 'package:caccu_app/presentation/Screen/Home/HomeViewModel.dart';
 import 'package:caccu_app/presentation/Screen/Account/Login.dart';
@@ -11,12 +11,16 @@ import 'package:caccu_app/presentation/Screen/Wallet/walletViewModel.dart';
 import 'package:caccu_app/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 
-
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
 
 
 
@@ -24,6 +28,9 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // await FirebaseApi().initNotification();
+  // Initialize Flutter Local Notifications
+  await initializeNotifications();
+
   await Hive.initFlutter();
   await Hive.openBox('userBox');
   runApp(
@@ -57,7 +64,6 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _checkLoginStatus();
-    FirebaseApi.firebaseInit();
   }
 
   Future<void> _checkLoginStatus() async {
@@ -91,5 +97,22 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+Future<void> initializeNotifications() async {
+  const AndroidInitializationSettings initializationSettingsAndroid =
+  AndroidInitializationSettings('@mipmap/ic_launcher');
 
+  // Initialization settings for Android
+  const InitializationSettings initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+  );
+
+  // Request notification permissions for Android 13+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+      AndroidFlutterLocalNotificationsPlugin>()
+      ?.requestNotificationsPermission();
+
+  // Initialize the plugin
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+}
 

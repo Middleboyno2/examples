@@ -13,10 +13,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../../data/entity/categoryEntity.dart';
 import '../../../data/entity/notificationEntity.dart';
 import '../../../data/entity/transactionEntity.dart';
 import '../../../data/entity/walletEntity.dart';
 import '../../../data/usecase/walletUsecase.dart';
+import '../../components/categorySpending.dart';
 
 class HomeViewModel with ChangeNotifier{
   WalletViewModel walletViewModel = WalletViewModel();
@@ -36,6 +38,9 @@ class HomeViewModel with ChangeNotifier{
 
   // Biến lưu trữ danh sách giao dịch
   List<TransactionEntity> transactions = [];
+
+  // Declare the external categorySpending list
+  late List<Map<String, dynamic>> categorySpending;
 
   // --------------------------------------------------------------------------------
 
@@ -350,6 +355,47 @@ class HomeViewModel with ChangeNotifier{
   Future<void> updateNotificationsForUser() async {
 
     await NotificationUseCase().updateNotificationsForUser(userId!);
+  }
+
+
+  //==============================================================================
+
+
+
+  Future<void> loadCategorySpending(int month) async {
+    try {
+      // Fetch category spending
+      List<Map<String, dynamic>> spendingData = await transactionViewModel.getCategorySpendingByMonth(month);
+      double totalAllPrice = 0;
+      for (var spending in spendingData){
+        totalAllPrice += spending['totalPrice'];
+      }
+      // Extract category IDs
+      List<String> categoryIds = spendingData.map((data) => data['categoryId'] as String).toList();
+
+      // Fetch categories
+      List<CategoryEntity> categories = await categoryViewModel.getCategoriesByIds(categoryIds);
+
+      // Combine spending data with category data into categorySpending
+      categorySpending = [];
+      for (var spending in spendingData) {
+        var category = categories.firstWhere((cat) => cat.categoryId == spending['categoryId']);
+        categorySpending.add({
+          'categoryId': spending['categoryId'],
+          'categoryName': category.name,
+          'totalPrice': spending['totalPrice'],
+          'totalAllPrice' : totalAllPrice,
+          'icon': category.icon, // Assuming the CategoryEntity contains an 'icon' field
+        });
+
+        categorySpending.sort((a, b) => b['totalPrice'].compareTo(a['totalPrice']));
+      }
+
+      // Notify listeners or perform UI updates if needed
+      print("Category spending data loaded successfully.");
+    } catch (e) {
+      print("Error loading category spending data: $e");
+    }
   }
 
 }

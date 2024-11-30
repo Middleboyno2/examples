@@ -33,4 +33,9 @@ class CategoryViewModel with ChangeNotifier{
   Future<String> getCategoryName(String categoryId) async{
     return await CategoryUseCase().getCategoryName(categoryId);
   }
+
+  Future<List<CategoryEntity>> getCategoriesByIds(List<String> categoryIds) async{
+    return await CategoryUseCase().getCategoriesByIds(categoryIds);
+  }
+
 }

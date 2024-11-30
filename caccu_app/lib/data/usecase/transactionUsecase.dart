@@ -67,4 +67,10 @@ class TransactionUseCase {
   Future<List<double>> getTotalPriceByWalletIds(String userId, List<String> walletIds){
     return _transactionRepository.getTotalPriceByWalletIds(userId, walletIds);
   }
+
+
+  Future<List<Map<String, dynamic>>> getCategorySpendingByMonth(
+      String userId, int month){
+    return _transactionRepository.getCategorySpendingByMonth(userId, month);
+  }
 }

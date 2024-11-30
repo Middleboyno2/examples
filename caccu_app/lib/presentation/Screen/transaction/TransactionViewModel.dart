@@ -205,4 +205,10 @@ class TransactionViewModel with ChangeNotifier {
     return TransactionUseCase().getTotalPriceByWalletIds(userId, walletIds);
   }
 
+
+  Future<List<Map<String, dynamic>>> getCategorySpendingByMonth(
+       int month) async{
+    return await TransactionUseCase().getCategorySpendingByMonth(userIdString!, month);
+  }
+
 }

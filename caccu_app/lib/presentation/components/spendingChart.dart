@@ -63,23 +63,23 @@ class SpendingChart extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Báo cáo tháng này',
+            'Báo cáo tháng ${DateTime.now().month}',
             style: TextStyle(
               color: Colors.white,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              'Xem báo cáo',
-              style: TextStyle(
-                color: Colors.green,
-                decoration: TextDecoration.underline,
-              ),
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.centerRight,
+          //   child: Text(
+          //     'Xem báo cáo',
+          //     style: TextStyle(
+          //       color: Colors.green,
+          //       decoration: TextDecoration.underline,
+          //     ),
+          //   ),
+          // ),
           SizedBox(height: 16),
           Expanded(
             child: LineChart(

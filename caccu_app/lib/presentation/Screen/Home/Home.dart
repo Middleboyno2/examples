@@ -1,7 +1,9 @@
 
 import 'package:caccu_app/data/service/LocalStorage.dart';
 import 'package:caccu_app/presentation/Screen/Wallet/Wallet.dart';
+import 'package:caccu_app/presentation/components/categorySpending.dart';
 import 'package:caccu_app/presentation/components/spendingChart.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,6 +11,7 @@ import 'package:provider/provider.dart';
 import '../../../data/entity/notificationEntity.dart';
 import '../../components/BoxWallet.dart';
 
+import '../../components/pieChart.dart';
 import 'HomeViewModel.dart';
 
 class Home extends StatefulWidget {
@@ -21,6 +24,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   late Future<void> _initializeFuture;
   late Future<void> _initTran;
+  late Future<void> _initCateSpending;
   String? userName = LocalStorageService().getUserName();
   List<NotificationEntity> notifications = []; // List to store notifications
   Set<String> readNotificationIds = {}; // To track read notifications
@@ -32,6 +36,7 @@ class _HomeState extends State<Home> {
     _initializeFuture = Provider.of<HomeViewModel>(context, listen: false).initialize();
     // Provider.of<HomeViewModel>(context, listen: false).testGetMonthlyWalletsByWalletIds();
     _initTran = Provider.of<HomeViewModel>(context, listen: false).loadTransactions(DateTime.now().month);
+    _initCateSpending = Provider.of<HomeViewModel>(context, listen: false).loadCategorySpending(DateTime.now().month);
     _loadNotifications();
 
   }
@@ -121,6 +126,7 @@ class _HomeState extends State<Home> {
                           showWalletBottomSheet(context, homeViewModel.getAllMonthlyWallet(), homeViewModel);
                         },
                       ),
+                      const SizedBox(height: 10),
                       FutureBuilder(
                         future: _initTran,
                         builder: (context, snapshot) {
@@ -135,6 +141,24 @@ class _HomeState extends State<Home> {
                             );
                           }
                         }
+                      ),
+                      const SizedBox(height: 10),
+                      FutureBuilder(
+                          future: _initCateSpending,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState == ConnectionState.waiting) {
+                              return const Center(child: CircularProgressIndicator());
+                            } else if (snapshot.hasError) {
+                              return Center(child: Text('Error: ${snapshot.error}'));
+                            } else {
+                              return SizedBox(
+                                  height: 600,
+                                  child: CategorySpendingComponent(
+                                    categorySpending: homeViewModel.categorySpending,
+                                  )
+                              );
+                            }
+                          }
                       ),
                     ],
                   );

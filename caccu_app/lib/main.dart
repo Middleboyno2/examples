@@ -114,5 +114,22 @@ Future<void> initializeNotifications() async {
 
   // Initialize the plugin
   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
+  await setupNotificationChannels();
+}
+
+
+Future<void> setupNotificationChannels() async {
+  const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    'default_channel', // id
+    'Default Notifications', // title
+    description: 'This channel is used for default notifications.', // description
+    importance: Importance.max,
+  );
+
+  // Initialize notification plugin
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
 }
 

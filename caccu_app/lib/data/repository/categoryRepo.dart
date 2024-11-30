@@ -101,6 +101,21 @@ class CategoryRepository{
     }
   }
 
+  // Fetch CategoryEntity list based on categoryId list
+  Future<List<CategoryEntity>> getCategoriesByIds(List<String> categoryIds) async {
+    try {
+      QuerySnapshot querySnapshot = await _db
+          .collection('categories')
+          .where(FieldPath.documentId, whereIn: categoryIds)
+          .get();
 
+      return querySnapshot.docs.map((doc) {
+        return CategoryEntity.fromMap(doc.data() as Map<String, dynamic>, doc.id);
+      }).toList();
+    } catch (e) {
+      print("Error fetching categories: $e");
+      return [];
+    }
+  }
 
 }

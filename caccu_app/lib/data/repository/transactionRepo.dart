@@ -210,5 +210,46 @@ class TransactionRepository {
   }
 
 
+  // Fetch categoryId and total price per category
+  Future<List<Map<String, dynamic>>> getCategorySpendingByMonth(
+      String userId, int month) async {
+    try {
+      DocumentReference userRef = _db.collection('users').doc(userId);
+
+      // Xác định ngày bắt đầu và kết thúc của tháng
+      DateTime startOfMonth = DateTime(DateTime.now().year, month, 1);
+      DateTime endOfMonth = DateTime(DateTime.now().year, month + 1, 0);
+
+      QuerySnapshot querySnapshot = await _db
+          .collection('transactions')
+          .where('userId', isEqualTo: userRef)
+          .where('time', isGreaterThanOrEqualTo: Timestamp.fromDate(startOfMonth))
+          .where('time', isLessThanOrEqualTo: Timestamp.fromDate(endOfMonth))
+          .get();
+
+      Map<String, double> spendingMap = {};
+
+      for (var doc in querySnapshot.docs) {
+        String categoryId = (doc.data() as Map<String, dynamic>)['categoryId'].id;
+        double price = (doc.data() as Map<String, dynamic>)['price'] ?? 0;
+
+        if (spendingMap.containsKey(categoryId)) {
+          spendingMap[categoryId] = spendingMap[categoryId]! + price;
+        } else {
+          spendingMap[categoryId] = price;
+        }
+      }
+
+      // Filter out categories with total price <= 0 and return as list
+      return spendingMap.entries
+          .where((entry) => entry.value > 0)
+          .map((entry) => {'categoryId': entry.key, 'totalPrice': entry.value})
+          .toList();
+    } catch (e) {
+      print("Error fetching category spending: $e");
+      return [];
+    }
+  }
+
 
 }

@@ -15,4 +15,9 @@ class CategoryUseCase{
   Future<String> getCategoryName(String categoryId){
     return _categoryRepository.getCategoryName(categoryId);
   }
+
+
+  Future<List<CategoryEntity>> getCategoriesByIds(List<String> categoryIds){
+    return _categoryRepository.getCategoriesByIds(categoryIds);
+  }
 }

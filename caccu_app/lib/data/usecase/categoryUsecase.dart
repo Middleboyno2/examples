@@ -20,4 +20,14 @@ class CategoryUseCase{
   Future<List<CategoryEntity>> getCategoriesByIds(List<String> categoryIds){
     return _categoryRepository.getCategoriesByIds(categoryIds);
   }
+
+  Future<bool> updateCate(
+      String categoryId, // ID của danh mục cần cập nhật
+      String userId,
+      String name,
+      String icon,
+      double limit,
+      ){
+    return _categoryRepository.updateCate(categoryId, userId, name, icon, limit);
+  }
 }

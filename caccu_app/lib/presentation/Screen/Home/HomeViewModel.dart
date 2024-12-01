@@ -133,7 +133,8 @@ class HomeViewModel with ChangeNotifier{
     userId = LocalStorageService().getUserId();
     if (userId != null) {
       walletIdDefault = await walletViewModel.getDefaultWalletByIdUser(userId!);
-      print('aaaaaaaaaaa: $walletIdDefault');
+      print('Wallet ID Default: $walletIdDefault');
+
       await categoryViewModel.syncDefaultCategories();
       // test nhờ
       // await categoryViewModel.fetchUserCategories();
@@ -145,7 +146,7 @@ class HomeViewModel with ChangeNotifier{
         currentMonthlyWallet = await monthlyWalletViewModel
             .getMonthlyWalletByUser(walletIdDefault!, currentMonth)
             .first;
-        print(currentMonthlyWallet?.availableBalance);
+        print('Current Monthly Wallet: $currentMonthlyWallet');
 
         notifyListeners(); // Gọi để cập nhật UI sau khi có dữ liệu
       }
@@ -373,8 +374,12 @@ class HomeViewModel with ChangeNotifier{
       // Extract category IDs
       List<String> categoryIds = spendingData.map((data) => data['categoryId'] as String).toList();
 
-      // Fetch categories
-      List<CategoryEntity> categories = await categoryViewModel.getCategoriesByIds(categoryIds);
+      late List<CategoryEntity> categories ;
+      if(categoryIds.isNotEmpty){
+        // Fetch categories
+        categories = await categoryViewModel.getCategoriesByIds(categoryIds);
+      }
+
 
       // Combine spending data with category data into categorySpending
       categorySpending = [];

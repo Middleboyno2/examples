@@ -6,6 +6,18 @@ import '../../../data/service/LocalStorage.dart';
 
 class CategoryViewModel with ChangeNotifier{
   String? userId = LocalStorageService().getUserId();
+
+  List<CategoryEntity> categories = [];
+
+  Future<void> reload() async {
+    categories = await listCategoryByUserId();
+    print("Danh sách categories đã tải:");
+    for (var category in categories) {
+      print("ID: ${category.categoryId}, Name: ${category.name}, Icon: ${category.icon}, Limit: ${category.limit}");
+    }
+    notifyListeners();
+  }
+
   Future<void> syncDefaultCategories() async{
     return await CategoryUseCase().syncDefaultCategories(userId!);
   }
@@ -36,6 +48,15 @@ class CategoryViewModel with ChangeNotifier{
 
   Future<List<CategoryEntity>> getCategoriesByIds(List<String> categoryIds) async{
     return await CategoryUseCase().getCategoriesByIds(categoryIds);
+  }
+
+  Future<bool> updateCate(
+      String categoryId, // ID của danh mục cần cập nhật
+      String name,
+      String icon,
+      double limit,
+      ) async{
+    return await CategoryUseCase().updateCate(categoryId, userId!, name, icon, limit);
   }
 
 }

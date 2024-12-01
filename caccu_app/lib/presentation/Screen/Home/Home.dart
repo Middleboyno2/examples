@@ -152,7 +152,7 @@ class _HomeState extends State<Home> {
                               return Center(child: Text('Error: ${snapshot.error}'));
                             } else {
                               return SizedBox(
-                                  height: 600,
+                                  height: 400,
                                   child: CategorySpendingComponent(
                                     categorySpending: homeViewModel.categorySpending,
                                   )

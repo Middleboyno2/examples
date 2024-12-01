@@ -1,8 +1,10 @@
 
 import 'package:caccu_app/presentation/Screen/Bill/billViewModel.dart';
+import 'package:caccu_app/presentation/Screen/Category/categoryViewModel.dart';
 import 'package:caccu_app/presentation/Screen/Home/HomeViewModel.dart';
 import 'package:caccu_app/presentation/Screen/Account/Login.dart';
 import 'package:caccu_app/presentation/Screen/Account/UserViewModel.dart';
+import 'package:caccu_app/presentation/Screen/Other/OtherViewModel.dart';
 import 'package:caccu_app/presentation/Screen/addTransacion/addTransactionViewModel.dart';
 import 'package:caccu_app/presentation/Screen/monthlyWallet/monthlyWalletViewModel.dart';
 import 'package:caccu_app/presentation/Screen/navigator.dart';
@@ -43,6 +45,8 @@ void main() async{
         ChangeNotifierProvider(create: (_) => WalletViewModel()),
         ChangeNotifierProvider(create: (_) => AddTransactionViewModel()),
         ChangeNotifierProvider(create: (_) => BillViewModel()),
+        ChangeNotifierProvider(create: (_) => OtherViewModel()),
+        ChangeNotifierProvider(create: (_) => CategoryViewModel())
       ],
       child: const MyApp(),
     ),

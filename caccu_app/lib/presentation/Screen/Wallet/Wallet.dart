@@ -106,14 +106,17 @@ class WalletBottomSheet extends StatelessWidget {
                           return const Text('No wallets available');
                         } else {
                           final dataList = snapshot.data!;
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            // physics: const NeverScrollableScrollPhysics(),
-                            itemCount: dataList.length,
-                            itemBuilder: (context, index) {
-                              final wallet = dataList[index];
-                              return _buildWalletCard(context, wallet);
-                            },
+                          return SizedBox(
+                            height: 600,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              itemCount: dataList.length,
+                              itemBuilder: (context, index) {
+                                final wallet = dataList[index];
+                                return _buildWalletCard(context, wallet);
+                              },
+                            ),
                           );
                         }
                       },

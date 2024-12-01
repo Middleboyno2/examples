@@ -107,7 +107,7 @@ class SpendingChart extends StatelessWidget {
                       showTitles: true,
                       getTitlesWidget: (value, meta) {
                         if (value == 1 || value == daysInMonth(DateTime.now())) {
-                          return Text('${value.toInt()}/11',
+                          return Text('${value.toInt()}/${DateTime.now().month}',
                               style: TextStyle(color: Colors.white, fontSize: 12));
                         }
                         return Text('');

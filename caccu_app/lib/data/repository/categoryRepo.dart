@@ -17,6 +17,36 @@ class CategoryRepository{
     await _db.collection('categories').doc(categoryId).update(updatedData);
   }
 
+  Future<bool> updateCate(
+      String categoryId, // ID của danh mục cần cập nhật
+      String userId,
+      String name,
+      String icon,
+      double limit,
+      ) async {
+    try {
+      // Chuyển đổi userId thành DocumentReference
+      DocumentReference userRef = _db.collection('users').doc(userId);
+
+      // Tạo một CategoryEntity với dữ liệu đã cập nhật
+      CategoryEntity updatedCategory = CategoryEntity(
+        categoryId: categoryId,
+        userId: userRef,
+        name: name,
+        icon: icon,
+        limit: limit,
+      );
+
+      // Cập nhật category trên Firestore
+      await _db.collection('categories').doc(categoryId).update(updatedCategory.toMap());
+      return true; // Trả về true nếu cập nhật thành công
+    } catch (e) {
+      print("Error updating category: $e");
+      return false; // Trả về false nếu có lỗi
+    }
+  }
+
+
   // Xóa danh mục
   Future<void> deleteCategory(String categoryId) async {
     await _db.collection('categories').doc(categoryId).delete();
@@ -103,6 +133,11 @@ class CategoryRepository{
 
   // Fetch CategoryEntity list based on categoryId list
   Future<List<CategoryEntity>> getCategoriesByIds(List<String> categoryIds) async {
+    if (categoryIds.isEmpty) {
+      print("categoryIds list is empty. Returning an empty list.");
+      return []; // Trả về danh sách trống nếu categoryIds rỗng
+    }
+
     try {
       QuerySnapshot querySnapshot = await _db
           .collection('categories')

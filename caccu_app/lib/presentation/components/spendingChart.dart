@@ -3,24 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../data/entity/transactionEntity.dart';
+
 class SpendingChart extends StatelessWidget {
   final List<TransactionEntity> transactions;
+  final int month; // Tháng cần hiển thị
+  final int year;  // Năm cần hiển thị
 
-  const SpendingChart({super.key, required this.transactions});
+  const SpendingChart({
+    super.key,
+    required this.transactions,
+    required this.month,
+    required this.year,
+  });
+
   //===============================================================================
   List<FlSpot> generateSpots(List<TransactionEntity> transactions) {
     // Tạo danh sách đầy đủ các ngày trong tháng
-    final now = DateTime.now();
-    final int daysInMonth = DateTime(now.year, now.month + 1, 1)
-        .subtract(Duration(days: 1))
-        .day;
+    final int daysInMonth = DateTime(year, month + 1, 1).subtract(Duration(days: 1)).day;
 
     Map<int, double> aggregatedData = {};
 
     // Cộng dồn giá trị price theo ngày
     for (var transaction in transactions) {
-      final day = transaction.time?.day; // Lấy ngày
-      if (day != null) {
+      final transactionDate = transaction.time;
+      if (transactionDate != null &&
+          transactionDate.month == month &&
+          transactionDate.year == year) {
+        final day = transactionDate.day;
         aggregatedData[day] = (aggregatedData[day] ?? 0) + transaction.price;
       }
     }
@@ -33,20 +42,21 @@ class SpendingChart extends StatelessWidget {
 
     return spots;
   }
+
   //===============================================================================
-  double daysInMonth(DateTime date) {
+  double daysInMonth() {
     // Lấy tháng tiếp theo và đặt ngày là 0, sẽ tự động trả về ngày cuối cùng của tháng hiện tại
-    var firstDayOfNextMonth = (date.month < 12)
-        ? DateTime(date.year, date.month + 1, 1)
-        : DateTime(date.year + 1, 1, 1);
+    var firstDayOfNextMonth = (month < 12) ? DateTime(year, month + 1, 1) : DateTime(year + 1, 1, 1);
     var lastDayOfCurrentMonth = firstDayOfNextMonth.subtract(Duration(days: 1));
     return lastDayOfCurrentMonth.day.toDouble();
   }
+
   //===============================================================================
   String formatCurrency(int value) {
     final formatter = NumberFormat("#,##0", "vi_VN"); // "vi_VN" là mã ngôn ngữ Tiếng Việt
     return formatter.format(value);
   }
+
   //==================================================================================
   @override
   Widget build(BuildContext context) {
@@ -63,23 +73,13 @@ class SpendingChart extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Báo cáo tháng ${DateTime.now().month}',
+            'Báo cáo tháng $month/$year',
             style: TextStyle(
               color: Colors.white,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
-          // Align(
-          //   alignment: Alignment.centerRight,
-          //   child: Text(
-          //     'Xem báo cáo',
-          //     style: TextStyle(
-          //       color: Colors.green,
-          //       decoration: TextDecoration.underline,
-          //     ),
-          //   ),
-          // ),
           SizedBox(height: 16),
           Expanded(
             child: LineChart(
@@ -96,19 +96,21 @@ class SpendingChart extends StatelessWidget {
                   ),
                 ],
                 minX: 1,
-                maxX: daysInMonth(DateTime.now()),
+                maxX: daysInMonth(),
                 minY: 0,
                 maxY: spots.isNotEmpty
-              ? spots.map((spot) => spot.y).reduce((a, b) => a > b ? a : b) * 1.2
-                : 10,
+                    ? spots.map((spot) => spot.y).reduce((a, b) => a > b ? a : b) * 1.2
+                    : 10,
                 titlesData: FlTitlesData(
                   bottomTitles: AxisTitles(
                     sideTitles: SideTitles(
                       showTitles: true,
                       getTitlesWidget: (value, meta) {
-                        if (value == 1 || value == daysInMonth(DateTime.now())) {
-                          return Text('${value.toInt()}/${DateTime.now().month}',
-                              style: TextStyle(color: Colors.white, fontSize: 12));
+                        if (value == 1 || value == daysInMonth()) {
+                          return Text(
+                            '${value.toInt()}/$month',
+                            style: TextStyle(color: Colors.white, fontSize: 12),
+                          );
                         }
                         return Text('');
                       },
@@ -123,14 +125,12 @@ class SpendingChart extends StatelessWidget {
                 ),
                 lineTouchData: LineTouchData(
                   touchTooltipData: LineTouchTooltipData(
-
                     getTooltipItems: (touchedSpots) {
                       return touchedSpots.map((touchedSpot) {
                         final day = touchedSpot.x.toInt();
                         final price = touchedSpot.y;
                         return LineTooltipItem(
-                          'Ngày: ${day}/${DateTime.now().month} '
-                              '\n Đã chi: ${formatCurrency(price.toInt())}',
+                          'Ngày: $day/$month\nĐã chi: ${formatCurrency(price.toInt())}',
                           TextStyle(color: Colors.white),
                         );
                       }).toList();
@@ -145,5 +145,3 @@ class SpendingChart extends StatelessWidget {
     );
   }
 }
-
-

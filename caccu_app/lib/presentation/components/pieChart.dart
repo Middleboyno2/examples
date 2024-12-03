@@ -34,7 +34,7 @@ class _PieChartSpendingState extends State<PieChartSpending> {
           children: [
             const SizedBox(height: 10),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
 
@@ -46,7 +46,7 @@ class _PieChartSpendingState extends State<PieChartSpending> {
                     )
                   ],
                 ),
-                const SizedBox(width: 100),
+                //
                 Column(
 
                   children: [

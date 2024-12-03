@@ -220,6 +220,7 @@ class TransactionRepository {
       DateTime startOfMonth = DateTime(DateTime.now().year, month, 1);
       DateTime endOfMonth = DateTime(DateTime.now().year, month + 1, 0);
 
+      // Query để lấy các giao dịch trong khoảng thời gian này
       QuerySnapshot querySnapshot = await _db
           .collection('transactions')
           .where('userId', isEqualTo: userRef)
@@ -227,12 +228,22 @@ class TransactionRepository {
           .where('time', isLessThanOrEqualTo: Timestamp.fromDate(endOfMonth))
           .get();
 
+      // Khởi tạo map để lưu tổng giá trị theo categoryId
       Map<String, double> spendingMap = {};
 
       for (var doc in querySnapshot.docs) {
-        String categoryId = (doc.data() as Map<String, dynamic>)['categoryId'].id;
-        double price = (doc.data() as Map<String, dynamic>)['price'] ?? 0;
+        // Chuyển đổi dữ liệu từ document
+        final data = doc.data() as Map<String, dynamic>;
 
+        // Lấy categoryId
+        final categoryRef = data['categoryId'];
+
+        final categoryId = categoryRef.id;
+
+        // Lấy giá trị price
+        final price = (data['price'] as num?)?.toDouble() ?? 0.0;
+
+        // Tính tổng giá trị theo categoryId
         if (spendingMap.containsKey(categoryId)) {
           spendingMap[categoryId] = spendingMap[categoryId]! + price;
         } else {
@@ -240,16 +251,20 @@ class TransactionRepository {
         }
       }
 
-      // Filter out categories with total price <= 0 and return as list
+      // Chuyển map thành list và loại bỏ các mục có tổng giá trị <= 0
       return spendingMap.entries
           .where((entry) => entry.value > 0)
-          .map((entry) => {'categoryId': entry.key, 'totalPrice': entry.value})
+          .map((entry) => {
+        'categoryId': entry.key,
+        'totalPrice': entry.value,
+      })
           .toList();
     } catch (e) {
       print("Error fetching category spending: $e");
       return [];
     }
   }
+
 
 
 }

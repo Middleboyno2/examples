@@ -5,6 +5,7 @@ import 'package:caccu_app/data/entity/monthlyWalletEntity.dart';
 import 'package:caccu_app/data/service/LocalStorage.dart';
 import 'package:caccu_app/data/usecase/noticationUseCase.dart';
 import 'package:caccu_app/presentation/Screen/Category/categoryViewModel.dart';
+import 'package:caccu_app/presentation/Screen/Summary/Summary.dart';
 import 'package:caccu_app/presentation/Screen/monthlyWallet/monthlyWalletViewModel.dart';
 import 'package:caccu_app/presentation/Screen/transaction/TransactionViewModel.dart';
 import 'package:caccu_app/presentation/Screen/Wallet/walletViewModel.dart';
@@ -19,6 +20,7 @@ import '../../../data/entity/transactionEntity.dart';
 import '../../../data/entity/walletEntity.dart';
 import '../../../data/usecase/walletUsecase.dart';
 import '../../components/categorySpending.dart';
+import '../Summary/monthlySummary.dart';
 
 class HomeViewModel with ChangeNotifier{
   WalletViewModel walletViewModel = WalletViewModel();
@@ -129,7 +131,28 @@ class HomeViewModel with ChangeNotifier{
 
   // ham nay duoc su dung khi tab Home duoc tro toi
   // lay thong tin vi default va luu no lai thoi
-  Future<void> initialize() async {
+  Future<void> initialize(BuildContext context) async {
+    //================================================================
+    LocalStorageService().saveCount(0);
+    if(LocalStorageService().getCount() == 0){
+      // Kiểm tra xem ngày đầu tháng không
+      if (DateTime.now().day == 3 || DateTime.now().day == 4) {
+        List<Map<String, dynamic>> summary = await Summary();
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => SummaryScreen(summary: summary)
+            ));
+        LocalStorageService().saveCount(1);
+      }
+    }
+    else{
+      if (DateTime.now().day != 3 || DateTime.now().day != 4) {
+        LocalStorageService().saveCount(0);
+      }
+    }
+    //===============================================================
+
+
     userId = LocalStorageService().getUserId();
     if (userId != null) {
       walletIdDefault = await walletViewModel.getDefaultWalletByIdUser(userId!);
@@ -152,6 +175,9 @@ class HomeViewModel with ChangeNotifier{
       }
 
       await updateNotificationsForUser();
+      //===============================================================
+
+
       notifyListeners();
     }
   }
@@ -390,7 +416,8 @@ class HomeViewModel with ChangeNotifier{
           'categoryName': category.name,
           'totalPrice': spending['totalPrice'],
           'totalAllPrice' : totalAllPrice,
-          'icon': category.icon, // Assuming the CategoryEntity contains an 'icon' field
+          'icon': category.icon,
+
         });
 
         categorySpending.sort((a, b) => b['totalPrice'].compareTo(a['totalPrice']));
@@ -402,5 +429,47 @@ class HomeViewModel with ChangeNotifier{
       print("Error loading category spending data: $e");
     }
   }
+
+  Future<List<Map<String, dynamic>>> Summary() async{
+    //transactions
+    List<TransactionEntity> transacs = await transactionViewModel.getTransactionsByUserAndMonthSort(userId!, DateTime.now().month - 1);
+
+
+    List<Map<String, dynamic>> spendingData = await transactionViewModel.getCategorySpendingByMonth(DateTime.now().month - 1);
+
+    double totalAllPrice = 0;
+    for (var spending in spendingData){
+      totalAllPrice += spending['totalPrice'];
+    }
+    // Extract category IDs
+    List<String> categoryIds = spendingData.map((data) => data['categoryId'] as String).toList();
+
+    late List<CategoryEntity> categories ;
+    if(categoryIds.isNotEmpty){
+      // Fetch categories
+      categories = await categoryViewModel.getCategoriesByIds(categoryIds);
+    }
+
+
+    // Combine spending data with category data into categorySpending
+    List<Map<String, dynamic>> summary = [];
+    for (var spending in spendingData) {
+      var category = categories.firstWhere((cat) => cat.categoryId == spending['categoryId']);
+      summary.add({
+        // 'categoryId': spending['categoryId'],
+        'categoryName': category.name,
+        'totalPrice': spending['totalPrice'],
+        'totalAllPrice' : totalAllPrice,
+        'icon': category.icon,
+        'transactions': transacs,
+        'limit': category.limit
+
+      });
+      summary.sort((a, b) => b['totalPrice'].compareTo(a['totalPrice']));
+    }
+    return summary;
+
+  }
+
 
 }

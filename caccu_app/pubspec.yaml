@@ -54,6 +54,7 @@ dependencies:
   permission_handler: ^11.3.1
   device_info_plus: ^11.1.1
   flutter_svg: ^2.0.16
+  smooth_page_indicator:
 
 dev_dependencies:
   flutter_test:

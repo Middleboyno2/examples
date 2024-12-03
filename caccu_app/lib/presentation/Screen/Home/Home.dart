@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     // Gọi initialize() khi khởi tạo màn hình
-    _initializeFuture = Provider.of<HomeViewModel>(context, listen: false).initialize();
+    _initializeFuture = Provider.of<HomeViewModel>(context, listen: false).initialize(context);
     // Provider.of<HomeViewModel>(context, listen: false).testGetMonthlyWalletsByWalletIds();
     _initTran = Provider.of<HomeViewModel>(context, listen: false).loadTransactions(DateTime.now().month);
     _initCateSpending = Provider.of<HomeViewModel>(context, listen: false).loadCategorySpending(DateTime.now().month);
@@ -137,7 +137,7 @@ class _HomeState extends State<Home> {
                           } else {
                             return SizedBox(
                               height: 600,
-                              child: SpendingChart(transactions: homeViewModel.transactions)
+                              child: SpendingChart(transactions: homeViewModel.transactions, month: DateTime.now().month, year: DateTime.now().year)
                             );
                           }
                         }

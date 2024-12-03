@@ -52,16 +52,16 @@ class OtherScreen extends StatelessWidget {
             title: "xem báo cáo hàng tháng",
             onTap: () {},
           ),
-          buildMenuItem(
-            icon: Icons.airplanemode_active,
-            title: "Chế độ máy bay",
-            onTap: () {},
-          ),
-          buildMenuItem(
-            icon: Icons.table_chart,
-            title: "Xuất dữ liệu tới Google Trang tính",
-            onTap: () {},
-          ),
+          // buildMenuItem(
+          //   icon: Icons.airplanemode_active,
+          //   title: "Chế độ máy bay",
+          //   onTap: () {},
+          // ),
+          // buildMenuItem(
+          //   icon: Icons.table_chart,
+          //   title: "Xuất dữ liệu tới Google Trang tính",
+          //   onTap: () {},
+          // ),
         ],
       )
     );

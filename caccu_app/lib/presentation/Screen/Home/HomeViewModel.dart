@@ -133,7 +133,7 @@ class HomeViewModel with ChangeNotifier{
   // lay thong tin vi default va luu no lai thoi
   Future<void> initialize(BuildContext context) async {
     //================================================================
-    LocalStorageService().saveCount(0);
+    // LocalStorageService().saveCount(0);
     if(LocalStorageService().getCount() == 0){
       // Kiểm tra xem ngày đầu tháng không
       if (DateTime.now().day == 3 || DateTime.now().day == 4) {

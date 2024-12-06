@@ -46,11 +46,11 @@ class _MonthlySummaryScreenState extends State<MonthlySummaryScreen> {
                   children: [
                     Text(
                       'Tổng số tiền đã tiêu',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       '${formatter.format(data['totalAllPrice'])} đ',
-                      style: TextStyle(fontSize: 16, color: Colors.redAccent),
+                      style: TextStyle(fontSize: 14, color: Colors.redAccent),
                     ),
                   ],
                 ),
@@ -59,11 +59,11 @@ class _MonthlySummaryScreenState extends State<MonthlySummaryScreen> {
                   children: [
                     Text(
                       'Tiêu trung bình/ngày',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       "${formatter.format((data['totalAllPrice'])/getDaysInCurrentMonth())} vnđ",
-                      style: TextStyle(fontSize: 16, color: Colors.redAccent),
+                      style: TextStyle(fontSize: 14, color: Colors.redAccent),
                     ),
                   ],
                 ),

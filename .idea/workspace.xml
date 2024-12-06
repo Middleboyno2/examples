@@ -4,7 +4,67 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db29ab10-095b-4a8a-bf91-15d6b418862a" name="Changes" comment="" />
+    <list default="true" id="db29ab10-095b-4a8a-bf91-15d6b418862a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/mapper/Note/NoteMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/mapper/Note/NoteMapperImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/model/Note.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/app/src/main/res/values-vn/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/firebase/firebase-tools-instant-win.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books" beforeDir="false" afterPath="$PROJECT_DIR$/books" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/mapper/book/BookMapperImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/mapper/book/BookMapperImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/model/History.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/model/History.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/parser/TextParserImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/parser/TextParserImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/room/BookDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/room/BookDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/room/BookDatabase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/room/BookDatabase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/util/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/util/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/util/DataStoreConstants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/data/util/DataStoreConstants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/main/Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/main/Activity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/main/Application.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/main/Application.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/main/MainEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/main/MainEvent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/main/MainState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/main/MainState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/main/MainViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/main/MainViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/main/Navigation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/main/Navigation.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/about/components/badges/AboutBadges.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/about/components/badges/AboutBadges.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/about/data/AboutViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/about/data/AboutViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/about/nested/license_info/data/LicenseInfoState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/about/nested/license_info/data/LicenseInfoState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/browse/components/layout/grid/BrowseGridDirectoryItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/browse/components/layout/grid/BrowseGridDirectoryItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/browse/components/layout/grid/BrowseGridItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/browse/components/layout/grid/BrowseGridItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/browse/components/layout/list/BrowseListItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/browse/components/layout/list/BrowseListItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/library/components/LibraryBookItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/library/components/LibraryBookItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/reader/components/settings_bottom_sheet/ReaderSettingsBottomSheet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/reader/components/settings_bottom_sheet/ReaderSettingsBottomSheet.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/reader/components/start_item/ReaderStartItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/reader/components/start_item/ReaderStartItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/settings/nested/appearance/components/AppearanceSettingsCategory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/settings/nested/appearance/components/AppearanceSettingsCategory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/settings/nested/appearance/components/settings/ThemeSetting.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/settings/nested/appearance/components/settings/ThemeSetting.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/settings/nested/appearance/components/subcategories/ThemePreferencesSubcategory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/presentation/screen/settings/nested/appearance/components/subcategories/ThemePreferencesSubcategory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/ui/theme/Transitions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/java/com/example/book/ui/theme/Transitions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/arimo_regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/arimo_regular_italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/garamond_regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/garamond_regular_italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/jost_regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/jost_regular_italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/lora_regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/lora_regular_italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/merriweather_regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/merriweather_regular_italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/mulish_regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/mulish_regular_italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/notoserif_regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/notoserif_regular_italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/nunito_regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/nunito_regular_italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/raleway_regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/raleway_regular_italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/robotoserif_regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/robotoserif_regular_italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/font/robotoslab_regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/values-night/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/res/values-night/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/books/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/caccu_app/lib/presentation/Screen/Summary/monthlySummary.dart" beforeDir="false" afterPath="$PROJECT_DIR$/caccu_app/lib/presentation/Screen/Summary/monthlySummary.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,9 +73,24 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Middleboyno2"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Middleboyno2/examples.git",
+    "accountId": "83a4bf04-752b-4d63-9089-fea1656a48fe"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2nC5SX4Rv5uPf89aSfsfJWrakA3" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,7 +104,9 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/project",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>

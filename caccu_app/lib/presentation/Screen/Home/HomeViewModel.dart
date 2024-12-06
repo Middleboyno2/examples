@@ -133,10 +133,9 @@ class HomeViewModel with ChangeNotifier{
   // lay thong tin vi default va luu no lai thoi
   Future<void> initialize(BuildContext context) async {
     //================================================================
-    // LocalStorageService().saveCount(0);
     if(LocalStorageService().getCount() == 0){
       // Kiểm tra xem ngày đầu tháng không
-      if (DateTime.now().day == 3 || DateTime.now().day == 4) {
+      if (DateTime.now().day == 1 ) {
         List<Map<String, dynamic>> summary = await Summary();
         Navigator.push(
             context,
@@ -146,7 +145,7 @@ class HomeViewModel with ChangeNotifier{
       }
     }
     else{
-      if (DateTime.now().day != 3 || DateTime.now().day != 4) {
+      if (DateTime.now().day != 1) {
         LocalStorageService().saveCount(0);
       }
     }

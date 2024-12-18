@@ -23,14 +23,14 @@ class CustomBottomAppBar extends StatelessWidget{
           GButton(
             icon: Icons.home,
             text: "Shop",
-            margin: EdgeInsets.only(right: 20),
+            // margin: EdgeInsets.only(right: 20),
 
           ),
 
           GButton(
             icon: Icons.shopping_bag_rounded,
             text: "Cart",
-            margin: EdgeInsets.only(left: 20),
+            // margin: EdgeInsets.only(left: 20),
           ),
 
 

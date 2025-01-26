@@ -45,7 +45,7 @@ class LocalStorageService {
   }
 
   int? getCount() {
-    return _userBox.get('count').toInt() ?? 0;
+    return _userBox.get('count') ?? 0;
   }
 
   Future<void> clearCount() async {

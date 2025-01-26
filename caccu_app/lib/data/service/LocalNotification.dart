@@ -31,25 +31,25 @@ class LocalNotifi{
   }
 
 
-  Future<void> showNotification() async {
-    const AndroidNotificationDetails androidNotificationDetails =
-    AndroidNotificationDetails(
-      'high_importance_channel', // Channel ID
-      'High Importance Notifications', // Channel name
-      importance: Importance.max,
-      priority: Priority.high,
-    );
-
-    const NotificationDetails notificationDetails =
-    NotificationDetails(android: androidNotificationDetails);
-
-    await flutterLocalNotificationsPlugin.show(
-      0, // Notification ID
-      'Test Notification', // Title
-      'This is the body of the notification.', // Body
-      notificationDetails,
-    );
-  }
+  // Future<void> showNotification() async {
+  //   const AndroidNotificationDetails androidNotificationDetails =
+  //   AndroidNotificationDetails(
+  //     'high_importance_channel', // Channel ID
+  //     'High Importance Notifications', // Channel name
+  //     importance: Importance.max,
+  //     priority: Priority.high,
+  //   );
+  //
+  //   const NotificationDetails notificationDetails =
+  //   NotificationDetails(android: androidNotificationDetails);
+  //
+  //   await flutterLocalNotificationsPlugin.show(
+  //     0, // Notification ID
+  //     'Test Notification', // Title
+  //     'This is the body of the notification.', // Body
+  //     notificationDetails,
+  //   );
+  // }
 
 
 

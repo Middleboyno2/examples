@@ -110,7 +110,7 @@ Future<void> initializeNotifications() async {
     android: initializationSettingsAndroid,
   );
 
-  // Request notification permissions for Android 13+
+  // Request notification permissions for Android 12+
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
       AndroidFlutterLocalNotificationsPlugin>()
